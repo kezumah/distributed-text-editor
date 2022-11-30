@@ -19,7 +19,7 @@ public class AppServerController {
 
     /**
      Fetches the doc corresponding to a given hash from the database
-     @param hash the unique 4-letter key string that corresponds to the doc
+     @param hash     the unique 4-letter key string that corresponds to the doc
      @return    an array representing the doc, or "ERROR" if no such doc exists in the database
      */
     @RequestMapping(value = "/doc", method = RequestMethod.POST)
