@@ -14,7 +14,7 @@ public class DatabaseController {
         return doc;
     }
 
-    public static void saveDoc (String hash){
+    public static void saveDoc (String hash, ArrayList<String> doc){
         // needs to be implemented
     }
 }
