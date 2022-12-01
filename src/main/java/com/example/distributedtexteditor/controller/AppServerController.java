@@ -1,13 +1,27 @@
 package com.example.distributedtexteditor.controller;
 
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import com.example.distributedtexteditor.model.User;
+import com.example.distributedtexteditor.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
+
+//@org.springframework.web.bind.annotation.RestController
+@RestController
+@RequestMapping("api/")
 public class AppServerController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("users")
+    public List<User> getUsers() {
+        return this.userRepository.findAll();
+    }
+
 
     /*
     This is the default test route - to be removed
