@@ -12,7 +12,7 @@ public class AppServerController {
     /*
     This is the default test route - to be removed
      */
-    @RequestMapping("/")
+    @RequestMapping("/greeting")
     public String getGreeting() {
         return "Hello, world!";
     }
