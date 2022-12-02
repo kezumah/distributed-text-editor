@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-//@org.springframework.web.bind.annotation.RestController
-@RestController
+@org.springframework.web.bind.annotation.RestController
+//@RestController
 @RequestMapping("api/")
 public class AppServerController {
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("users")
-    public List<User> getUsers() {
-        return this.userRepository.findAll();
-    }
-
+//
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @GetMapping("users")
+//    public List<User> getUsers() {
+//        return this.userRepository.findAll();
+//    }
+//
 
     /*
     This is the default test route - to be removed
