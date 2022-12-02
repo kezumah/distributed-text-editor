@@ -1,11 +1,26 @@
-import React from 'react';
-import LandingPage from './pages/LandingPage';
-
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
+import NewNote from "./pages/NewNote";
+import ExistNote from "./pages/ExistNote";
+import NotFound from "./pages/NotFound";
+import Post from "./pages/Post";
 function App() {
   return (
-    <div className="App">
-      <LandingPage/>
-    </div>
+    <BrowserRouter basename="notepad">
+      <div className="App">
+        <h1>Note Pad</h1>
+        <Header />
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/newnote" component={NewNote} exact />
+          <Route path="/existnote" component={ExistNote} exact />
+          <Route path="/existnote/post/:id" component={Post} exact />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -11,22 +11,22 @@ import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 //@RestController
-@RequestMapping("api/")
+@RequestMapping("/api")
 public class AppServerController {
-//
-//    @Autowired
-//    private UserRepository userRepository;
-//
-//    @GetMapping("users")
-//    public List<User> getUsers() {
-//        return this.userRepository.findAll();
-//    }
-//
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return this.userRepository.findAll();
+    }
+
 
     /*
     This is the default test route - to be removed
      */
-    @RequestMapping("/")
+    @RequestMapping("/greeting")
     public String getGreeting() {
         return "Hello, world!";
     }
