@@ -3,6 +3,7 @@ package com.example.distributedtexteditor.controller;
 import com.example.distributedtexteditor.model.User;
 import com.example.distributedtexteditor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,17 +11,16 @@ import java.util.List;
 
 
 @org.springframework.web.bind.annotation.RestController
-//@RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class AppServerController {
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @GetMapping("/users")
-    public List<User> getUsers() {
-        return this.userRepository.findAll();
-    }
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @GetMapping("/users")
+//    public List<User> getUsers() {
+//        return this.userRepository.findAll();
+//    }
 
 
     /*

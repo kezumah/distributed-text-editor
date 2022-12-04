@@ -6,6 +6,11 @@ export default function ExistNote() {
     e.preventDefault();
     const noteCode = { code };
     console.log(noteCode);
+
+    fetch("http://localhost:8080/doc", {
+      method: "POST",
+      headers,
+    });
   };
 
   return (
