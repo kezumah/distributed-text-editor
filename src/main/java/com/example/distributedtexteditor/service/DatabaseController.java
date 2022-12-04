@@ -1,7 +1,10 @@
-package com.example.distributedtexteditor.controller;
+package com.example.distributedtexteditor.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DatabaseController {
 
     public static void createHashInDatabase(String hash){
@@ -14,7 +17,7 @@ public class DatabaseController {
         return doc;
     }
 
-    public static void saveDoc (String hash){
+    public static void saveDoc (String hash, ArrayList<String> doc){
         // needs to be implemented
     }
 }

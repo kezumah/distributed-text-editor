@@ -1,8 +1,11 @@
-package com.example.distributedtexteditor.controller;
+package com.example.distributedtexteditor.service;
 
 import java.nio.charset.Charset;
 import java.util.Random;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UtilityMethods {
 
     /*
