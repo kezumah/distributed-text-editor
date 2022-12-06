@@ -43,7 +43,7 @@ public class TestClient {
 
     public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException {
         String HOST = "localhost";
-        int PORT = 1000;
+        int PORT = 1300;
         TestClient testClient = new TestClient(HOST, PORT);
     }
 }
