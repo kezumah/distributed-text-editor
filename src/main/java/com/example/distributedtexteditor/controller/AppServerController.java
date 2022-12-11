@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.distributedtexteditor.entity.User;
-import com.example.distributedtexteditor.service.DatabaseController;
+import main.java.com.example.distributedtexteditor.controller.DatabaseController;
 import com.example.distributedtexteditor.service.UserService;
 import com.example.distributedtexteditor.service.UtilityMethods;
 

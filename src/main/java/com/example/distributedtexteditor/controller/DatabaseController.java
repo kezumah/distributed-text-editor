@@ -1,4 +1,4 @@
-package com.example.distributedtexteditor.service;
+package main.java.com.example.distributedtexteditor.controller;
 
 import java.util.ArrayList;
 

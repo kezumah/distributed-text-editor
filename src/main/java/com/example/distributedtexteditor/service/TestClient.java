@@ -1,5 +1,11 @@
 package com.example.distributedtexteditor.controller;
 
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.apache.tomcat.util.json.JSONParser;
+import org.apache.tomcat.util.json.ParseException;
+import org.json.JSONObject;
+
 import java.net.*;
 import java.io.*;
 import java.util.InputMismatchException;
@@ -10,12 +16,13 @@ public class TestClient {
     private int port;
     private OutputStream s1out;
     private InputStream s1In;
+
     private Socket s1;
 
     int TIMEOUT = 2000;
 
 
-    public TestClient(String host, int port) throws IOException, ClassNotFoundException {
+    public TestClient(String host, int port) throws IOException, ClassNotFoundException, ParseException {
 
         this.host = host;
         this.port = port;
@@ -28,22 +35,25 @@ public class TestClient {
         s1out = s1.getOutputStream();
         s1In = s1.getInputStream();
 
-        ObjectOutputStream oos = new ObjectOutputStream(s1out);
-        ObjectInputStream ois = new ObjectInputStream(s1In);
+        OutputStreamWriter oos = new OutputStreamWriter(s1out);
+        InputStreamReader ois = new InputStreamReader(s1In);
+        BufferedReader in = new BufferedReader(ois);
 
         while(true){
-            // Continuously print messages received from server
-            String incomingMessage = (String) ois.readObject();
-            System.out.println("Message received from server: " + incomingMessage);
+            String line = in.readLine();
+            if (line != null) {
+                JSONObject json = new JSONObject(line);
+                System.out.println("Received: " + json);
 
+            }
         }
 
     }
 
 
-    public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException, ParseException {
         String HOST = "localhost";
-        int PORT = 1000;
+        int PORT = 1300;
         TestClient testClient = new TestClient(HOST, PORT);
     }
 }
