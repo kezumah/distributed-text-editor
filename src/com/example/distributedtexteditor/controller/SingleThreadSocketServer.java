@@ -13,13 +13,13 @@ public class SingleThreadSocketServer {
     private OutputStream s1out;
     private InputStream s1In;
 
-    OutputStreamWriter oos;
+    PrintWriter oos;
 
     InputStreamReader ois;
 
     int counter = 0;
 
-    JSONObject message;
+    //JSONObject message;
 
 
     public SingleThreadSocketServer(){
@@ -28,14 +28,15 @@ public class SingleThreadSocketServer {
     public void execute() throws IOException, InterruptedException {
         this.s1out = socket.getOutputStream();
         this.s1In = socket.getInputStream();
-        this.oos = new OutputStreamWriter(s1out, StandardCharsets.UTF_8);
+        this.oos = new PrintWriter(s1out,true);
         this.ois = new InputStreamReader(s1In);
 
         while(true){
             counter ++;
             String value = "Message " + counter + ": This message is coming from a server thread @ pid: " + Thread.currentThread().getName();
-            message = new JSONObject();
+            JSONObject message = new JSONObject();
             message.put("message", value);
+            System.out.println("sending " + message);
             sendMessageToClient(message);
             //System.out.println(message);
             //System.out.println("message sent");
@@ -49,7 +50,7 @@ public class SingleThreadSocketServer {
 
     public void sendMessageToClient(JSONObject message) throws IOException {
         // Send transformed string back to client
-        oos.write(message.toString());
+        oos.println(message.toString());
 
     }
 

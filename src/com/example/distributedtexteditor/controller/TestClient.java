@@ -1,6 +1,7 @@
 package com.example.distributedtexteditor.controller;
 
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
 import org.json.JSONObject;
@@ -36,17 +37,15 @@ public class TestClient {
 
         OutputStreamWriter oos = new OutputStreamWriter(s1out);
         InputStreamReader ois = new InputStreamReader(s1In);
-        // JSONParser jsonParser = new JSONParser(ois);
+        BufferedReader in = new BufferedReader(ois);
 
         while(true){
-            // Continuously print messages received from server
-           // int incomingMessage = ois.read();
-            JSONParser jsonParser = new JSONParser(ois);
-            System.out.println("message read");
+            String line = in.readLine();
+            if (line != null) {
+                JSONObject json = new JSONObject(line);
+                System.out.println("Received: " + json);
 
-            JSONObject jsonObject = (JSONObject)jsonParser.parse();
-            System.out.println("Message received from server: " + jsonObject);
-
+            }
         }
 
     }
