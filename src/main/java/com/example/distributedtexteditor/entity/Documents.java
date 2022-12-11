@@ -10,7 +10,7 @@ public class Documents {
 
 	@Id
 	private String hash;
-	private List<Character> doc;
+	private List<String> doc;
 	
 	public String getHash() {
 		return hash;
@@ -18,10 +18,10 @@ public class Documents {
 	public void setHash(String hash) {
 		this.hash = hash;
 	}
-	public List<Character> getDoc() {
+	public List<String> getDoc() {
 		return doc;
 	}
-	public void setDoc(List<Character> doc) {
+	public void setDoc(List<String> doc) {
 		this.doc = doc;
 	}
 	
