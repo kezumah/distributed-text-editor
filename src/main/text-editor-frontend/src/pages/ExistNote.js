@@ -1,64 +1,50 @@
 import { useEffect, useState } from "react";
+
 export default function ExistNote() {
   const [code, setCode] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [infos, setInfos] = useState([]);
+  const [note, setNote] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const noteCode = { code };
-
-    const info = { name, address };
 
     fetch("http://localhost:9090/addUser", {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(info),
+      header: { "Content-Type": "application/json" },
+      body: JSON.stringify(note),
     }).then(() => {
-      console.log("new info added");
+      console.log("new blog add");
     });
   };
 
   useEffect(() => {
     fetch("http://localhost:9090/users")
-      .then((res) => res.json())
-      .then((result) => {
-        setInfos(result);
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setNote(data);
       });
   }, []);
 
   return (
-    <div>
+    <div className="create">
       <form onSubmit={handleSubmit}>
-        <lable>Name:</lable>
+        <lable>Hash:</lable>
         <input
           type="text"
           required
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <lable> Address:</lable>
-        <input
-          type="text"
-          required
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
         />
         <button>Enter</button>
+        {note && (
+          <textarea
+            required
+            value={note[0].name}
+            onChange={(e) => setNote(e.target.value)}
+          ></textarea>
+        )}
       </form>
-
-      {console.log(infos)}
-      {name}
-      {address}
-      <h2>INFO</h2>
-      {infos.map((information) => (
-        <div>
-          Address: {information.address}
-          ID: {information.id}
-          Name: {information.name}
-        </div>
-      ))}
     </div>
   );
 }

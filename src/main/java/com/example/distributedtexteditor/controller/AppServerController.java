@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.distributedtexteditor.entity.User;
-import com.example.distributedtexteditor.service.DatabaseController;
 import com.example.distributedtexteditor.service.UserService;
 import com.example.distributedtexteditor.service.UtilityMethods;
 

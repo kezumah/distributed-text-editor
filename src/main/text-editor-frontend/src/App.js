@@ -12,6 +12,8 @@ function App() {
       <div className="App">
         <h1>Note Pad</h1>
         <Header />
+      </div>
+      <div className="App">
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/newnote" component={NewNote} exact />

@@ -1,10 +1,10 @@
 package com.example.distributedtexteditor.controller;
 
+import java.net.*;
 import java.io.*;
-import java.net.Socket;
 import java.util.InputMismatchException;
 
-public class TestClientTwo {
+public class TestClient {
 
     private String host;
     private int port;
@@ -15,7 +15,7 @@ public class TestClientTwo {
     int TIMEOUT = 2000;
 
 
-    public TestClientTwo(String host, int port) throws IOException, ClassNotFoundException {
+    public TestClient(String host, int port) throws IOException, ClassNotFoundException {
 
         this.host = host;
         this.port = port;
@@ -43,7 +43,7 @@ public class TestClientTwo {
 
     public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException {
         String HOST = "localhost";
-        int PORT = 1000;
-        TestClientTwo testClient = new TestClientTwo(HOST, PORT);
+        int PORT = 1300;
+        TestClient testClient = new TestClient(HOST, PORT);
     }
 }

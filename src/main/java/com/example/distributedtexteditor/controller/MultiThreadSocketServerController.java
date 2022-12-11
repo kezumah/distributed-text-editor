@@ -19,7 +19,7 @@ public class MultiThreadSocketServerController extends SingleThreadSocketServer 
     }
 
     public static void main(String[] args) throws IOException {
-        int port = 1000;
+        int port = 1300;
 
         ServerSocket serverSocket = new ServerSocket(port);
 
