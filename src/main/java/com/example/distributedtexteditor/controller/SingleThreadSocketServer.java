@@ -1,12 +1,9 @@
 package com.example.distributedtexteditor.controller;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import netscape.javascript.JSObject;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+
 
 public class SingleThreadSocketServer {
     private Socket socket;
@@ -19,7 +16,6 @@ public class SingleThreadSocketServer {
 
     int counter = 0;
 
-    //JSONObject message;
 
 
     public SingleThreadSocketServer(){
@@ -38,8 +34,6 @@ public class SingleThreadSocketServer {
             message.put("message", value);
             System.out.println("sending " + message);
             sendMessageToClient(message);
-            //System.out.println(message);
-            //System.out.println("message sent");
             Thread.sleep(2000);
         }
     }

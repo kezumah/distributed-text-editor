@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * A simple multithreaded socket server that dispatches a new thread for each connection and sends messages to clients
+ * This class will need to be updated to handle incoming client messages through a message queue, and share the updated state of the document
+ */
 public class MultiThreadSocketServerController extends SingleThreadSocketServer implements  Runnable{
 
 
