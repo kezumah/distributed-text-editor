@@ -19,6 +19,8 @@ public class TestClient {
 
     private Socket s1;
 
+    private PrintWriter oos;
+
     int TIMEOUT = 2000;
 
 
@@ -35,7 +37,7 @@ public class TestClient {
         s1out = s1.getOutputStream();
         s1In = s1.getInputStream();
 
-        OutputStreamWriter oos = new OutputStreamWriter(s1out);
+        this.oos = new PrintWriter(s1out, true);
         InputStreamReader ois = new InputStreamReader(s1In);
         BufferedReader in = new BufferedReader(ois);
 
@@ -43,7 +45,8 @@ public class TestClient {
             String line = in.readLine();
             if (line != null) {
                 JSONObject json = new JSONObject(line);
-                System.out.println("Received: " + json);
+                System.out.println(json.get("message"));
+                System.out.println();
 
             }
         }
