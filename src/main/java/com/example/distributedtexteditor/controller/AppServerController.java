@@ -6,26 +6,26 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.distributedtexteditor.entity.Documents;
+//import com.example.distributedtexteditor.entity.Documents;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 //import com.example.distributedtexteditor.entity.Documents;
-import com.example.distributedtexteditor.entity.User;
+//import com.example.distributedtexteditor.entity.User;
 //import com.example.distributedtexteditor.repository.DocumentRepository;
-import com.example.distributedtexteditor.service.DatabaseService;
-import com.example.distributedtexteditor.service.UserService;
+//import com.example.distributedtexteditor.service.DatabaseService;
+//import com.example.distributedtexteditor.service.UserService;
 import com.example.distributedtexteditor.service.UtilityMethods;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AppServerController {
-	@Autowired
-	private UserService userService;
+    //@Autowired
+	//private UserService userService;
 	
-	@Autowired
-	private DatabaseService databaseController;
+	//@Autowired
+	//private DatabaseService databaseController;
 	
 	/*
     This is the default test route - to be removed
@@ -45,6 +45,8 @@ public class AppServerController {
      */
     @RequestMapping(value = "/doc", method = RequestMethod.POST)
     public ArrayList<String> postMethod(@RequestBody String hash) throws MalformedURLException, NotBoundException, RemoteException {
+        System.out.println(hash);
+        System.out.println("/doc route hit");
         ArrayList<String> doc = DatabaseController.getDocFromDatabase(hash);
         return doc;
     }

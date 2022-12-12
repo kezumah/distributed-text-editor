@@ -2,9 +2,6 @@ package com.example.distributedtexteditor.entity;
 
 
 import com.example.distributedtexteditor.repository.Database;
-import jdk.dynalink.Operation;
-
-import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,11 +35,13 @@ public class DatabaseImpl extends java.rmi.server.UnicastRemoteObject implements
     @Override
     public ArrayList<String> getDocFromDatabase(String hash) throws RemoteException {
         ArrayList<String> doc = database.get(hash);
+        System.out.println(hash);
+        System.out.println(hash.getClass());
         if (doc != null){
             return doc;
         } else {
             ArrayList<String> newDoc = new ArrayList<String>();
-            newDoc.add("");
+            newDoc.add("No hash in DB for this doc :(");
             return newDoc;
         }
     }

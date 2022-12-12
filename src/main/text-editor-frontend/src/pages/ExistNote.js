@@ -1,62 +1,32 @@
 import { useEffect, useState } from "react";
 
 export default function ExistNote() {
-  const [code, setCode] = useState("");
+  const [hash, setHash] = useState("");
   const [note, setNote] = useState(null);
 
 
 /*
-// mark your function as async
 async function handleSubmit(e) {
   e.preventDefault();
-  // always try using const rather than let
-  const response = await fetch("http://localhost:9090/greeting", {
-    method: "GET",
-    header: { "Content-Type": "application/json" }})
-
-  if (response.ok) {
-      console.log("response is ok")
-      //const json = response.json();
-      console.log(response.text());
-  } else {
-      alert("HTTP response not ok");
-  }
-}
-*/
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
   await fetch("http://localhost:9090/greeting", {
     method: "GET",
     header: { "Content-Type": "application/json" },
-    //body: JSON.stringify(note),
-  }).then((res) => {
-    let x = res.text()
-    console.log(x);
-    return x;
-  });
+    //body: JSON.stringify(hash),
+  }).then((res) => res.text()).then((res) => console.log(res))
+};
+*/
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  await fetch("http://localhost:9090/doc", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: hash,
+  }).then((res) => res.json()).then((res) => console.log(res))
 };
 
-/*
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    await fetch("http://localhost:9090/greeting", {
-      method: "GET",
-      header: { "Content-Type": "application/json" },
-      //body: JSON.stringify(note),
-    }).then((res) => {
-      let x = res.text();
-      console.log(res.text());
-    });
-  };
-
-  */
-
-
-  useEffect(() => {
+useEffect(() => {
     fetch("http://localhost:9090/users")
       .then((res) => {
         return res.json();
@@ -73,8 +43,8 @@ const handleSubmit = async (e) => {
         <input
           type="text"
           required
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
+          value={hash}
+          onChange={(e) => setHash(e.target.value)}
         />
         <button>Enter</button>
         {note && (

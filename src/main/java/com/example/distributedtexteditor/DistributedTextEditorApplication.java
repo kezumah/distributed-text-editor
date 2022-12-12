@@ -15,9 +15,8 @@ public class DistributedTextEditorApplication {
 
 	public static void main(String[] args) throws RemoteException {
 		// start app and create remote database at port 2000
-		SpringApplication.run(DistributedTextEditorApplication.class, args);
 		registry = LocateRegistry.createRegistry(databasePort);
-		registry.rebind("/DBServer", new DatabaseImpl());
+		registry.rebind("DBServer", new DatabaseImpl());
+		SpringApplication.run(DistributedTextEditorApplication.class, args);
 	}
-
 }
