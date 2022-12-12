@@ -1,3 +1,5 @@
+
+
 package com.example.distributedtexteditor.entity;
 
 import java.util.List;
@@ -27,3 +29,4 @@ public class Documents {
 	
 	
 }
+

@@ -21,7 +21,6 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
     // Instantiate a MessageHandler object, which will maintain the message queue and perform operational transform
     private static MessageHandler messageHandler = new MessageHandler();
 
-
     public MultiThreadSocketServer(MultiThreadSocketServer parentThread) {
         this.parentThread = parentThread;
     }
