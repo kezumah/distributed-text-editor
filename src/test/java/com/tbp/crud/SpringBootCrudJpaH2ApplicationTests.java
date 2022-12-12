@@ -1,4 +1,4 @@
-<<<<<<< HEAD:src/test/java/com/example/distributedtexteditor/DistributedTextEditorApplicationTests.java
+//<<<<<<< HEAD:src/test/java/com/example/distributedtexteditor/DistributedTextEditorApplicationTests.java
 
 /*
 package com.example.distributedtexteditor;
