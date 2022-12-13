@@ -3,8 +3,6 @@ package com.example.distributedtexteditor.controller;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Locale;
 import java.util.logging.Level;
 
 public class SingleThreadSocketServer {
@@ -39,31 +37,20 @@ public class SingleThreadSocketServer {
         this.ois = new InputStreamReader(s1In);
         this.in = new BufferedReader(ois);
 
-
-        // getLock
-        // unlock
-
-        while (true) {
-            counter++;
-            String value = "Message " + counter + ": This message is coming from a ser thread @ pid: " + threadName;
-            log.logger.info(value);
-            JSONObject message = new JSONObject();
-            message.put("message", value);
-            sendMessageToClient(message);
-            Thread.sleep(2000);
-        }
-        // lock
-        /*
+        // dispatch each incoming message to the main thread to broadcast
         while (true) {
             String line = in.readLine();
-            // Handle client messages here and then send them to the main thread's message queue
             if (line != null) {
-                JSONObject json = new JSONObject(line);
-                System.out.println("Received: " + json);
-                System.out.println(json.get("message"));
-                //parentThread.manageEdit("", 2);
+                try {
+                    log.logger.info(line);
+                    parentThread.broadcastMessage(line, this);
+                } catch (NullPointerException e){
+                    ;
+                    System.out.println("parent is null");
+                }
+
             }
-           */
+        }
     }
 
     public void setSocket(Socket socket){
@@ -72,17 +59,6 @@ public class SingleThreadSocketServer {
 
     public Socket getSocket(){
         return this.socket;
-    }
-
-    public void sendMessageToClient(JSONObject message) throws IOException {
-        // Send transformed string back to client
-        oos.println(message.toString());
-
-    }
-
-    public void logger() {
-
-
     }
 
 }
