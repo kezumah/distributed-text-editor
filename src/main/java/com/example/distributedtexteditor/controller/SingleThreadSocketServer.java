@@ -3,6 +3,8 @@ package com.example.distributedtexteditor.controller;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Level;
 
 public class SingleThreadSocketServer {
@@ -20,6 +22,8 @@ public class SingleThreadSocketServer {
     Log log;
 
     public MultiThreadSocketServer parentThread;
+
+    private static final Lock lock = new ReentrantLock();
 
 
     public SingleThreadSocketServer() throws IOException {
@@ -42,13 +46,13 @@ public class SingleThreadSocketServer {
             String line = in.readLine();
             if (line != null) {
                 try {
+                    lock.lock();
                     log.logger.info(line);
+                    lock.unlock();
                     parentThread.broadcastMessage(line, this);
                 } catch (NullPointerException e){
-                    ;
                     System.out.println("parent is null");
                 }
-
             }
         }
     }

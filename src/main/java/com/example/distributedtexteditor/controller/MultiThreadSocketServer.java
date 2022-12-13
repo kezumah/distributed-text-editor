@@ -43,7 +43,7 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
 
     @Override
     public void run() {
-        lock.lock();
+        //lock.lock();
         try {
             execute();
         } catch (IOException e) {
@@ -51,7 +51,7 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            lock.unlock();
+            //lock.unlock();
             System.out.println(Thread.currentThread().getName() + "unlock");
         }
     }
