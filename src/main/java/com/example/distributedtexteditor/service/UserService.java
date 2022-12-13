@@ -1,3 +1,4 @@
+/*
 package com.example.distributedtexteditor.service;
 
 import java.util.List;
@@ -50,3 +51,5 @@ public class UserService {
 	}
 
 }
+*/
+

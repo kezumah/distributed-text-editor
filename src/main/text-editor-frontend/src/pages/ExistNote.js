@@ -1,22 +1,32 @@
 import { useEffect, useState } from "react";
 
 export default function ExistNote() {
-  const [code, setCode] = useState("");
+  const [hash, setHash] = useState("");
   const [note, setNote] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    fetch("http://localhost:9090/addUser", {
-      method: "POST",
-      header: { "Content-Type": "application/json" },
-      body: JSON.stringify(note),
-    }).then(() => {
-      console.log("new blog add");
-    });
-  };
+/*
+async function handleSubmit(e) {
+  e.preventDefault();
+  await fetch("http://localhost:9090/greeting", {
+    method: "GET",
+    header: { "Content-Type": "application/json" },
+    //body: JSON.stringify(hash),
+  }).then((res) => res.text()).then((res) => console.log(res))
+};
+*/
 
-  useEffect(() => {
+async function handleSubmit(e) {
+  e.preventDefault();
+  await fetch("http://localhost:9090/doc", {
+    method: "POST",
+    header: { "Content-Type": "application/json" },
+    body: hash,
+  }).then((res) => res.json()).then((res) => console.log(res))
+};
+
+
+useEffect(() => {
     fetch("http://localhost:9090/users")
       .then((res) => {
         return res.json();
@@ -33,8 +43,8 @@ export default function ExistNote() {
         <input
           type="text"
           required
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
+          value={hash}
+          onChange={(e) => setHash(e.target.value)}
         />
         <button>Enter</button>
         {note && (
