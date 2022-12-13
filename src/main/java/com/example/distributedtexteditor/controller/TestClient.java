@@ -76,10 +76,13 @@ public class TestClient {
 
     public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException, ParseException, InterruptedException {
         String HOST = "localhost";
-        int PORT = 1300;
+        System.out.println("Enter a port to begin: ");
+        Scanner portScanner = new Scanner(System.in);
+        int PORT = portScanner.nextInt();
         System.out.println("Welcome to the chat app :) ! Enter a username to get started:");
         Scanner obj = new Scanner(System.in);
         String userName = obj.nextLine();
+
         TestClient testClient = new TestClient(HOST, PORT, userName);
     }
 }
