@@ -6,7 +6,7 @@ export default function NewNote() {
   const [note, setNote] = useState("");
 
 
-  const socket = new WebSocket('ws://localhost:1300', 'echo-protocol');
+  const socket = new WebSocket('ws://localhost:1300');
 
   socket.onopen = function() {
     socket.send(JSON.stringify("hello"));

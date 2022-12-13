@@ -16,16 +16,23 @@ import java.util.ArrayList;
 public class MultiThreadSocketServer extends SingleThreadSocketServer implements  Runnable{
 
     // List of all server threads that are handling clients
-    private static ArrayList<SingleThreadSocketServer> threadList = new ArrayList<SingleThreadSocketServer>();
+    private static ArrayList<MultiThreadSocketServer> threadList = new ArrayList<MultiThreadSocketServer>();
 
     // Instantiate a MessageHandler object, which will maintain the message queue and perform operational transform
     private static MessageHandler messageHandler = new MessageHandler();
+
+    // A reference to the main thread
+    //private MultiThreadSocketServer parentThread;
 
     public MultiThreadSocketServer(MultiThreadSocketServer parentThread) {
         this.parentThread = parentThread;
     }
 
     public MultiThreadSocketServer() {
+    }
+
+    public void echo(){
+        System.out.println("This is the parent thread!");
     }
 
     @Override
@@ -39,25 +46,21 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
         }
     }
 
-    public synchronized String manageEdit(String doc, int offset){
-        return messageHandler.manageEdit(doc, offset);
-    }
-
     /**
      * Broadcast a message to every other thread, except the thread which originated the request
      * @param message
      * @param thread
      */
-    public void broadcastMessage(String message, SingleThreadSocketServer thread) {
+    public synchronized void broadcastMessage(String message, SingleThreadSocketServer thread) {
+        //System.out.println("About to broadcast from parent" + message);
         for (int i = 0; i < threadList.size(); i++) {
-            SingleThreadSocketServer currentThread = threadList.get(i);
+            MultiThreadSocketServer currentThread = threadList.get(i);
             if (!thread.equals(currentThread)) {
+                //System.out.println("not current thread");
                 PrintWriter out;
                 try {
-                    out = new PrintWriter(thread.getSocket().getOutputStream(), true);
-                    JSONObject content = new JSONObject();
-                    content.put("content", message);
-                    out.println(content.toString());
+                    out = new PrintWriter(currentThread.getSocket().getOutputStream(), true);
+                    out.println(message);
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -75,10 +78,14 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
             Socket socket = serverSocket.accept();
             MultiThreadSocketServer serverThread = new MultiThreadSocketServer(this);
             serverThread.setSocket(socket);
+            Thread newThreadRef = new Thread(serverThread);
             threadList.add(serverThread);
-            new Thread(serverThread).start();
+            newThreadRef.start();
             System.out.println("New thread dispatched for incoming request on port 1300");
         }
+        //            serverThread.setSocket(socket);
+        //            threadList.add(serverThread);
+        //            new Thread(serverThread).start();
     }
 
 

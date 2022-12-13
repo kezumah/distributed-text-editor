@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class SingleThreadSocketServer {
@@ -32,28 +33,23 @@ public class SingleThreadSocketServer {
         this.ois = new InputStreamReader(s1In);
         this.in = new BufferedReader(ois);
 
-        while (true) {
-            counter++;
-            String value = "Message " + counter + ": This message is coming from a server thread @ pid: " + Thread.currentThread().getName();
-            JSONObject message = new JSONObject();
-            message.put("message", value);
-            sendMessageToClient(message);
-            Thread.sleep(2000);
-        }
+        counter++;
 
-
-        /*
+        // dispatch each incoming message to the main thread to broadcast
         while (true) {
             String line = in.readLine();
-            // Handle client messages here and then send them to the main thread's message queue
             if (line != null) {
-                JSONObject json = new JSONObject(line);
-                System.out.println("Received: " + json);
-                System.out.println(json.get("message"));
-                //parentThread.manageEdit("", 2);
+                try {
+                    //parentThread.echo();
+                    parentThread.broadcastMessage(line, this);
+                } catch (NullPointerException e){
+                    ;
+                    System.out.println("parent is null");
+                }
+
+                }
             }
-           */
-    }
+        }
 
     public void setSocket(Socket socket){
         this.socket = socket;

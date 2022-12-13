@@ -1,17 +1,13 @@
 package com.example.distributedtexteditor.controller;
 
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.apache.tomcat.util.json.JSONParser;
 import org.apache.tomcat.util.json.ParseException;
-import org.json.JSONObject;
 
-import java.net.*;
-import java.io.*;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TestClientTwo {
+public class TestClientThree {
 
     public static void main(String[] args) throws IOException, InputMismatchException, ClassNotFoundException, ParseException {
         String HOST = "localhost";
