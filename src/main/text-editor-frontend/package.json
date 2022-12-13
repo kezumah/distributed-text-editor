@@ -21,6 +21,7 @@
     "slate-react": "^0.22.3",
     "socket.io": "^4.5.4",
     "socket.io-client": "^4.5.4",
+    "socketio": "^1.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -51,6 +52,6 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC", 
+  "license": "ISC",
   "proxy": "http://localhost:9090"
 }
