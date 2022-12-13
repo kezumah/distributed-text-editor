@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * A simple multithreaded socket server that dispatches a new thread for each connection and sends messages to clients
@@ -22,21 +24,29 @@ public class MultiThreadSocketServer extends SingleThreadSocketServer implements
     private static MessageHandler messageHandler = new MessageHandler();
 
 
-    public MultiThreadSocketServer(MultiThreadSocketServer parentThread) {
+    private static final Lock lock = new ReentrantLock();
+
+    public MultiThreadSocketServer(MultiThreadSocketServer parentThread) throws IOException {
+        super();
         this.parentThread = parentThread;
     }
 
-    public MultiThreadSocketServer() {
+    public MultiThreadSocketServer() throws IOException {
+        super();
     }
 
     @Override
     public void run() {
+        lock.lock();
         try {
             execute();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
+        } finally {
+            lock.unlock();
+            System.out.println(Thread.currentThread().getName() + "unlock");
         }
     }
 

@@ -73,8 +73,6 @@ public class AppServerController {
     
     /*
 
-<<<<<<< HEAD
-=======
 	@PostMapping("/addUser")
 	public User addUser(@RequestBody User user) {
 		return userService.createUser(user);
@@ -106,5 +104,4 @@ public class AppServerController {
 	}
 	
 	*/
->>>>>>> main
 }
