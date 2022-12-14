@@ -1,4 +1,4 @@
-# Group chat applcation
+## Group chat application
 
 ### How to run
 
