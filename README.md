@@ -13,4 +13,4 @@
 
 ### Screenshots
 
-![Server](server.png)
+![Server](server1.png)
