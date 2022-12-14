@@ -13,4 +13,11 @@
 
 ### Screenshots
 
+* Here is the server, It shows everytime a client gets connected, It also shows the logs.
 ![Server](server1.png)
+* This is the first client, it shows all the messages sent by other by other clients.
+![Client1](client1.png)
+* This is the second client, it is similar to clinet 1.
+![Client2](client2.png)
+* Last one is the third client.
+![Client3](client3.png)
