@@ -1,4 +1,8 @@
-## Group chat application
+## Real-Time, Multi-threaded Chat Application
+
+### Key Links:
+1. Video: https://northeastern-my.sharepoint.com/:v:/g/personal/ezumah_k_northeastern_edu/EfBoMoR-RR5Ph8meNW8r4XcBmuv8CUz9vvXgn7qZu4_G6g?e=59jngx
+2. Project Report: https://docs.google.com/document/d/1wh0BVyzVsziflSiMHCAS8UoTWYgYaa6uCwgYVWPdd94/edit#
 
 ### How to run
 
@@ -17,7 +21,7 @@
 ![Server](server1.png)
 * This is the first client, it shows all the messages sent by other by other clients.
 ![Client1](client1.png)
-* This is the second client, it is similar to clinet 1.
+* This is the second client, it is similar to client 1.
 ![Client2](client2.png)
 * Last one is the third client.
 ![Client3](client3.png)
